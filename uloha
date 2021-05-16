@@ -1,5 +1,4 @@
 def smallest_range(input_string, input_first_word, input_second_word):
-
     word = ""
     latest_chosen = None
     current_counter = 0
@@ -8,9 +7,9 @@ def smallest_range(input_string, input_first_word, input_second_word):
     for letter in input_string:
         if letter == " ":
             if word == input_first_word or input_second_word:
-                if latest_chosen is not None and word and (
-                        minimal_counter > current_counter or minimal_counter is None):
-                    minimal_counter = current_counter
+                if latest_chosen is not None and word:
+                    if minimal_counter > current_counter or minimal_counter is None:
+                        minimal_counter = current_counter
                 current_counter = 0
                 latest_chosen = word
             current_counter = current_counter + 1
