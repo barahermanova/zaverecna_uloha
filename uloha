@@ -1,4 +1,5 @@
-def smallest_range(input_string, input_first_word, input_second_word):
+def smallest_range(input_string, input_first, input_second):
+    input_string = input_string + " "
     word = ""
     latest_chosen = None
     current_counter = 0
@@ -6,12 +7,13 @@ def smallest_range(input_string, input_first_word, input_second_word):
 
     for letter in input_string:
         if letter == " ":
-            if word == input_first_word or input_second_word:
-                if latest_chosen is not None and word:
-                    if minimal_counter > current_counter or minimal_counter is None:
-                        minimal_counter = current_counter
+            if word == input_first or word == input_second:
+                if latest_chosen is not None and latest_chosen is not word and (
+                        minimal_counter is None or minimal_counter > current_counter):
+                    minimal_counter = current_counter
                 current_counter = 0
                 latest_chosen = word
+
             current_counter = current_counter + 1
             word = ""
         else:
@@ -21,16 +23,15 @@ def smallest_range(input_string, input_first_word, input_second_word):
 
 
 if __name__ == "__main__":
-    input_string = input("Text without punctuation: ")
+    input_string = input("Insert your text without punctuation: ")
     if input_string == "":
         raise ValueError("You need to fill your text")
-    input_string = input_string + " "
 
-    input_first_word = input("First word: ")
+    input_first_word = input("Insert your first word: ")
     if input_first_word == "":
         raise ValueError("You need to fill your first word")
 
-    input_second_word = input("Second word: ")
+    input_second_word = input("Insert your second word: ")
     if input_second_word == "":
         raise ValueError("You need to fill your second word")
 
